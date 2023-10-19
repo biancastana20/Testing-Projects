@@ -1,0 +1,11 @@
+{
+  "cucumberautocomplete.steps": ["test/features/step-definitions/*.js"],
+  "cucumberautocomplete.syncfeatures": "test/features/**/*.feature",
+  "cucumberautocomplete.strictGherkinCompletion": true,
+  "cucumberautocomplete.strictGherkinValidation": true,
+  "cucumberautocomplete.smartSnippets": true,
+  "prettier.arrowParens": "avoid",
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "prettier.printWidth": 150
+}
