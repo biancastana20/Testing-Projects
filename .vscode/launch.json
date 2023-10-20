@@ -3,7 +3,7 @@
   "configurations": [
     {
       "name": "Launch Program",
-      "program": "${workspaceFolder}/_projects/rates/model/test.js",
+      "program": "${workspaceFolder}/_projects/rates/model/hello.js",
       "request": "launch",
       "skipFiles": ["<node_internals>/**"],
       "type": "node"
@@ -12,7 +12,7 @@
       "name": "debugger",
       "type": "node",
       "request": "launch",
-      "args": ["wdio.conf.js", "--baseUrl= https://aquabottesting.com/#"],
+      "args": ["wdio.conf.js", "baseUrl=https://www.saucedemo.com", "tags=@demo", "spec=test/features/saucedemo/saucedemo.feature"],
       "cwd": "${workspaceFolder}",
       "autoAttachChildProcesses": true,
       "program": "${workspaceRoot}/node_modules/@wdio/cli/bin/wdio.js",

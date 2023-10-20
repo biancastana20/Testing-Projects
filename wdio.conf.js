@@ -1,10 +1,14 @@
+import Args from './test/helper/constants/argsConstants.js'
+import dotenv from 'dotenv'
+dotenv.config()
+
 export const config = {
   //
   // ====================
   // Runner Configuration
   // ====================
   // WebdriverIO supports running e2e tests as well as unit and component tests.
-  runner: "local",
+  runner: 'local',
   //
   // ==================
   // Specify Test Files
@@ -21,14 +25,10 @@ export const config = {
   // then the current working directory is where your `package.json` resides, so `wdio`
   // will be called from there.
   //
-  specs: [
-    "./test/features/**/*.feature",
-    // ToDo: define location for spec files here
-  ],
+  specs: [Args.getArgs('spec')],
+
   // Patterns to exclude.
-  exclude: [
-    // 'path/to/excluded/files'
-  ],
+  exclude: [],
   //
   // ============
   // Capabilities
@@ -54,7 +54,18 @@ export const config = {
   capabilities: [
     {
       maxInstances: 4,
-      browserName: "chrome",
+      browserName: 'chrome',
+      'goog:chromeOptions': {
+        args: [
+          '--disable-web-security',
+          // '--headless',
+          '--disable-dev-shm-usage',
+          '--no-sandbox',
+          '--disable-gpu',
+          '--proxy-server',
+          'auth-server-whitelist="_"',
+        ],
+      },
       acceptInsecureCerts: true,
     },
   ],
@@ -66,7 +77,7 @@ export const config = {
   // Define all options that are relevant for the WebdriverIO instance here
   //
   // Level of logging verbosity: trace | debug | info | warn | error | silent
-  logLevel: "error",
+  logLevel: 'error',
   //
   // Set specific log levels per logger
   // loggers:
@@ -90,7 +101,7 @@ export const config = {
   // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
   // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
   // gets prepended directly.
-  baseUrl: "https://aquabottesting.com/#",
+  baseUrl: Args.getArgs('baseUrl'),
   //
   // Default timeout for all waitFor* commands.
   waitforTimeout: 10000,
@@ -106,7 +117,7 @@ export const config = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  services: ["chromedriver"],
+  services: ['chromedriver'],
   //
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
@@ -114,7 +125,7 @@ export const config = {
   //
   // Make sure you have the wdio adapter package for the specific framework installed
   // before running any tests.
-  framework: "cucumber",
+  framework: 'cucumber',
 
   //
   // The number of times to retry the entire specfile when it fails as a whole
@@ -129,12 +140,12 @@ export const config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ["spec", ["allure", { outputDir: "allure-results" }]],
+  reporters: ['spec', ['allure', { outputDir: 'allure-results' }]],
 
   // If you are using Cucumber you need to specify the location of your step definitions.
   cucumberOpts: {
     // <string[]> (file/dir) require files before executing features
-    require: ["./test/features/step-definitions/*.js"],
+    require: ['./test/features/step-definitions/*.js'],
     // <boolean> show full backtrace for errors
     backtrace: false,
     // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
@@ -150,7 +161,7 @@ export const config = {
     // <boolean> fail if there are any undefined or pending steps
     strict: false,
     // <string> (expression) only execute the features or scenarios with tags matching the expression
-    tagExpression: "@demo",
+    tagExpression: '@demo',
     // <number> timeout for step definitions
     timeout: 60000,
     // <boolean> Enable this config to treat undefined definitions as warnings.
@@ -209,8 +220,9 @@ export const config = {
    * @param {Array.<String>} specs        List of spec file paths that are to be run
    * @param {object}         browser      instance of created browser/device session
    */
-  // before: function (capabilities, specs) {
-  // },
+  before: async function (capabilities, specs) {
+    await browser.maximizeWindow()
+  },
   /**
    * Runs before a WebdriverIO command gets executed.
    * @param {string} commandName hook command name
@@ -255,8 +267,7 @@ export const config = {
    * @param {number}             result.duration  duration of scenario in milliseconds
    * @param {object}             context          Cucumber World object
    */
-  // afterStep: function (step, scenario, result, context) {
-  // },
+  afterStep: function (step, scenario, result, context) {},
   /**
    *
    * Runs after a Cucumber Scenario.
@@ -321,4 +332,4 @@ export const config = {
    */
   // onReload: function(oldSessionId, newSessionId) {
   // }
-};
+}
