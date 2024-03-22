@@ -3,20 +3,20 @@
   "configurations": [
     {
       "name": "Launch Program",
-      "program": "${workspaceFolder}/_projects/rates/model/hello.js",
+      "program": "${workspaceFolder}/interviu.js",
       "request": "launch",
       "skipFiles": ["<node_internals>/**"],
       "type": "node"
-    },
-    {
-      "name": "debugger",
-      "type": "node",
-      "request": "launch",
-      "args": ["wdio.conf.js", "baseUrl=https://www.saucedemo.com", "tags=@demo", "spec=test/features/saucedemo/saucedemo.feature"],
-      "cwd": "${workspaceFolder}",
-      "autoAttachChildProcesses": true,
-      "program": "${workspaceRoot}/node_modules/@wdio/cli/bin/wdio.js",
-      "console": "integratedTerminal"
     }
+    // {
+    //   "name": "debugger",
+    //   "type": "node",
+    //   "request": "launch",
+    //   "args": ["wdio.conf.js", "baseUrl=https://aquabottesting.com/", "tags=@aquabot", "spec=test/features/aquabot/aquabot.feature"],
+    //   "cwd": "${workspaceFolder}",
+    //   "autoAttachChildProcesses": true,
+    //   "program": "${workspaceRoot}/node_modules/@wdio/cli/bin/wdio.js",
+    //   "console": "integratedTerminal"
+    // }
   ]
 }

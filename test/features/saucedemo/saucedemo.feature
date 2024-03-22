@@ -1,11 +1,8 @@
 Feature: Feature name
 
-    @demo
+    @saucedemo
     Scenario Outline: First Run
-        Given LogIn to saucedemo web app
-        # When Search <SearchItem>
-        # Then Click on the first button
-        # Then URL should match <ExpectedURL>
+        Given I navigate to "SauceDemo" website and log in with "User1"
 
         Examples:
             | TestId | SearchItem |

@@ -33,11 +33,7 @@ export const config = {
   // ============
   // Capabilities
   // ============
-  // Define your capabilities here. WebdriverIO can run multiple capabilities at the same
-  // time. Depending on the number of capabilities, WebdriverIO launches several test
-  // sessions. Within your capabilities you can overwrite the spec and exclude options in
-  // order to group specific specs to a specific capability.
-  //
+
   // First, you can define how many instances should be started at the same time. Let's
   // say you have 3 different capabilities (Chrome, Firefox, and Safari) and you have
   // set maxInstances to 1; wdio will spawn 3 processes. Therefore, if you have 10 spec
@@ -70,12 +66,6 @@ export const config = {
     },
   ],
 
-  //
-  // ===================
-  // Test Configurations
-  // ===================
-  // Define all options that are relevant for the WebdriverIO instance here
-  //
   // Level of logging verbosity: trace | debug | info | warn | error | silent
   logLevel: 'error',
   //
@@ -105,13 +95,18 @@ export const config = {
   //
   // Default timeout for all waitFor* commands.
   waitforTimeout: 10000,
+
+  filesToWatch: [
+    // e.g. rerun tests if I change my application code
+    // './app/**/*.js'
+  ],
   //
   // Default timeout in milliseconds for request
   // if browser driver or grid doesn't send response
   connectionRetryTimeout: 120000,
   //
   // Default request retries count
-  connectionRetryCount: 3,
+  // connectionRetryCount: 3,
   //
   // Test runner services
   // Services take over a specific job you don't want to take care of. They enhance
@@ -161,7 +156,7 @@ export const config = {
     // <boolean> fail if there are any undefined or pending steps
     strict: false,
     // <string> (expression) only execute the features or scenarios with tags matching the expression
-    tagExpression: '@demo',
+    tagExpression: '',
     // <number> timeout for step definitions
     timeout: 60000,
     // <boolean> Enable this config to treat undefined definitions as warnings.
@@ -222,6 +217,7 @@ export const config = {
    */
   before: async function (capabilities, specs) {
     await browser.maximizeWindow()
+    //we can add custim commands
   },
   /**
    * Runs before a WebdriverIO command gets executed.
