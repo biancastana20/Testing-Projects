@@ -266,3 +266,43 @@ if (!array.includes(stringToCheck)) {
 
 // console.log('newArr', allElemCom)
 
+//------------------PROMISES
+
+const greetings = (val1, val2) => {
+  return new Promise((resolve, reject) => {
+    const result = val1 + val2
+    if (result) {
+      resolve(result) // Rezolvă promisiunea cu rezultatul
+    } else {
+      reject('Eroare: Nu s-a putut calcula suma') // Respinge promisiunea în caz de eroare
+    }
+  })
+}
+
+// Apelul funcției greetings și gestionarea rezultatului utilizând .then() și .catch()
+greetings(2, 3)
+  .then(res => {
+    console.log('ceva1', res)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+//---transform in async await
+const greetings2 = async (val1, val2) => {
+  try {
+    const result = val1 + val2
+    return result
+  } catch (error) {
+    throw new Error('Eroare: Nu s-a putut calcula suma')
+  }
+}
+
+// Apelul funcției greetings și gestionarea rezultatului utilizând async/await
+;(async () => {
+  try {
+    const res = await greetings2(2, 3)
+    console.log('ceva1', res)
+  } catch (err) {
+    console.log(err.message)
+  }
+})()

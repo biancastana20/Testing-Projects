@@ -15,7 +15,7 @@ Given(/^I navigate to "([^"]*)" website( and log in with "([^"]*)")?$/, { wrappe
       await helperFunctions.logIn(user)
     }
   } else {
-    context.set({ key: 'ceva', val: 'altcva' })
+    context.set({ key: 'object', val: 'object1' })
     console.log('AquaBot here', context)
   }
 })
@@ -49,7 +49,7 @@ Given(/^I chose "([^"]*)" radio button$/, async buttonName => {
 })
 Given(/^I chose all option that starts with t from dropdown$/, async () => {
   const ddl = await $('#contactForm .form-group .form-control-select')
-  const options = await $$(`#contactForm .form-group .form-control-select option`)
+  // const options = await $$(`#contactForm .form-group .form-control-select option`)
   await browser.execute(elem => {
     elem.scrollIntoViewIfNeeded()
   }, ddl)
@@ -67,22 +67,4 @@ Given(/^I chose all option that starts with t from dropdown$/, async () => {
   await ddl.selectByVisibleText('Tables')
 })
 
-Given(/^I chose all option that starts with t from dropdown$/, async () => {
-  const ddl = await $('#contactForm .form-group .form-control-select')
-  const options = await $$(`#contactForm .form-group .form-control-select option`)
-  await browser.execute(elem => {
-    elem.scrollIntoViewIfNeeded()
-  }, ddl)
 
-  await browser.$(ddl).waitForDisplayed({ timeout: 5000 })
-  await browser.$(ddl).click()
-
-  // let arr = []
-  // for (let option of options) {
-  //   const optionText = await option.getText()
-  //   if (optionText.toLowerCase().startsWith('t')) arr.push(optionText)
-  // }
-  // console.log(arr)
-  const testing = await ddl.selectByAttribute('value', 'Testing')
-  const table = await ddl.selectByVisibleText('Tables')
-})
